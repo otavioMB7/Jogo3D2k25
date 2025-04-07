@@ -521,15 +521,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c95a80d07f184de45bc19b596a81e202, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 586.1891
+      value: 586.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c95a80d07f184de45bc19b596a81e202, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 73.175735
+      value: 73.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c95a80d07f184de45bc19b596a81e202, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 813.5567
+      value: 813.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c95a80d07f184de45bc19b596a81e202, type: 3}
       propertyPath: m_LocalRotation.w
@@ -614,9 +614,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1731b068f787d42448cf9a68a6ed63ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  RotSpeed: 0
-  Gravity: 0
+  Speed: 5
+  RotSpeed: 180
+  Gravity: 50
 --- !u!95 &1595827736
 Animator:
   serializedVersion: 7
@@ -627,7 +627,7 @@ Animator:
   m_GameObject: {fileID: 1595827734}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 388d125126bb0034c9bc49725615d09e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
