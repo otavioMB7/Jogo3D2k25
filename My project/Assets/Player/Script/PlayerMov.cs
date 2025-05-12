@@ -25,7 +25,7 @@ public class PlayerMov : MonoBehaviour
         movimento  = Mycamera.TransformDirection(movimento);
         movimento.y = 0;
 
-        controller.Move(movimento * Time.deltaTime * 5  );
+        controller.Move(movimento * Time.deltaTime * 10  );
         controller.Move(new Vector3 (0, - 9.81f, 0) * Time.deltaTime);
 
         if(movimento != Vector3.zero)
