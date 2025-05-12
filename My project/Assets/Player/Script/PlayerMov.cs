@@ -6,11 +6,13 @@ public class PlayerMov : MonoBehaviour
 {
     private CharacterController controller;
     private Transform Mycamera;
+    private Animator animator;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         Mycamera = Camera.main.transform;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,5 +27,13 @@ public class PlayerMov : MonoBehaviour
 
         controller.Move(movimento * Time.deltaTime * 5  );
         controller.Move(new Vector3 (0, - 9.81f, 0) * Time.deltaTime);
+
+        if(movimento != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movimento), Time.deltaTime * 10);
+        }
+
+        animator.SetBool("Mover", movimento != Vector3.zero);
+
     }
 }
