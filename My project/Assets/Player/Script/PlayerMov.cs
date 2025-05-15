@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerMov : MonoBehaviour
 {
     private CharacterController controller;
     private Transform Mycamera;
     private Animator animator;
+
+    private float forcaY;
+
+    private bool caindodopulo;
+    [SerializeField]private Transform pedopersonagem;
+    [SerializeField] private LayerMask colisaoLayer;
+
 
     void Start()
     {
@@ -26,7 +34,6 @@ public class PlayerMov : MonoBehaviour
         movimento.y = 0;
 
         controller.Move(movimento * Time.deltaTime * 10  );
-        controller.Move(new Vector3 (0, - 9.81f, 0) * Time.deltaTime);
 
         if(movimento != Vector3.zero)
         {
@@ -35,5 +42,21 @@ public class PlayerMov : MonoBehaviour
 
         animator.SetBool("Mover", movimento != Vector3.zero);
 
+        caindodopulo = Physics.CheckSphere(pedopersonagem.position, 0.3f, colisaoLayer);
+        animator.SetBool("Está no chão", caindodopulo);
+
+        if (Input.GetKeyDown(KeyCode.Space) && caindodopulo)
+
+        {
+            forcaY = 5f;
+            animator.SetTrigger("Saltar");
+        }
+
+        if(forcaY > -9.81f)
+        {
+            forcaY += -9.81f * Time.deltaTime;
+        }
+
+        controller.Move(new Vector3(0, forcaY, 0) * Time.deltaTime);
     }
 }
