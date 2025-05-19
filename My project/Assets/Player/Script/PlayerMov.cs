@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
 public class PlayerMov : MonoBehaviour
 {
     private CharacterController controller;
-    private Transform Mycamera;
+    private Transform myCamera;
     private Animator animator;
 
     private float forcaY;
+    private bool caindoDoPulo;
 
-    private bool caindodopulo;
-    [SerializeField]private Transform pedopersonagem;
+    [SerializeField] private Transform peDoPersonagem;
     [SerializeField] private LayerMask colisaoLayer;
-
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Mycamera = Camera.main.transform;
+        myCamera = Camera.main.transform;
         animator = GetComponent<Animator>();
     }
 
@@ -29,30 +27,31 @@ public class PlayerMov : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 movimento = new Vector3(horizontal, 0, vertical);
-
-        movimento  = Mycamera.TransformDirection(movimento);
+        movimento = myCamera.TransformDirection(movimento);
         movimento.y = 0;
 
-        controller.Move(movimento * Time.deltaTime * 10  );
+        controller.Move(movimento * Time.deltaTime * 10);
 
-        if(movimento != Vector3.zero)
+        if (movimento.magnitude > 0.1f)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movimento), Time.deltaTime * 10);
+            animator.SetInteger("transition", 1); // andando
+        }
+        else
+        {
+            animator.SetInteger("transition", 0); // parado
         }
 
-        animator.SetBool("Mover", movimento != Vector3.zero);
+        caindoDoPulo = Physics.CheckSphere(peDoPersonagem.position, 0.3f, colisaoLayer);
+        animator.SetBool("Está no chão", caindoDoPulo);
 
-        caindodopulo = Physics.CheckSphere(pedopersonagem.position, 0.3f, colisaoLayer);
-        animator.SetBool("Está no chão", caindodopulo);
-
-        if (Input.GetKeyDown(KeyCode.Space) && caindodopulo)
-
+        if (Input.GetKeyDown(KeyCode.Space) && caindoDoPulo)
         {
             forcaY = 5f;
             animator.SetTrigger("Saltar");
         }
 
-        if(forcaY > -9.81f)
+        if (forcaY > -9.81f)
         {
             forcaY += -9.81f * Time.deltaTime;
         }
