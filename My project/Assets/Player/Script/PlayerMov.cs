@@ -42,7 +42,7 @@ public class PlayerMov : MonoBehaviour
 
         animator.SetBool("Mover", movimento != Vector3.zero);
 
-        caindodopulo = Physics.CheckSphere(pedopersonagem.position, 0.3f, colisaoLayer);
+        caindodopulo = Physics.CheckSphere(pedopersonagem.position, 0.50f, colisaoLayer);
         animator.SetBool("Está no chão", caindodopulo);
 
         if (Input.GetKeyDown(KeyCode.Space) && caindodopulo)
