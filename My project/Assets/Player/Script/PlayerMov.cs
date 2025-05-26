@@ -1,62 +1,117 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
-public class PlayerMov : MonoBehaviour
+public class PlayerNovo : MonoBehaviour
 {
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Referência ao CharacterController da Unity
     private CharacterController controller;
-    private Transform Mycamera;
-    private Animator animator;
 
-    private float forcaY;
+    // Velocidade de movimento
+    public float speed = 5f;
 
-    private bool caindodopulo;
-    [SerializeField]private Transform pedopersonagem;
-    [SerializeField] private LayerMask colisaoLayer;
+    // Força do pulo
+    public float jumpForce = 8f;
 
+    // Gravidade aplicada ao personagem
+    public float gravity = -9.81f;
+
+    // Velocidade vertical (queda, pulo, etc.)
+    private float verticalVelocity;
+
+    // Referência ao Animator (para animações)
+    private Animator anim;
+
+    // Referência à câmera (para rotação com o mouse)
+    public Transform cameraTransform;
+
+    // Sensibilidade do mouse
+    public float mouseSensitivity = 2f;
+
+    // Acumulador para rotação vertical (câmera)
+    private float xRotation = 0f;
+
+    // Para controlar ataque (gatilho da animação)
+    private bool isAttacking = false;
 
     void Start()
     {
+        // Pegando os componentes necessários na cena
         controller = GetComponent<CharacterController>();
-        Mycamera = Camera.main.transform;
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+
+        // Bloqueia e esconde o cursor no centro da tela
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
 
-        Vector3 movimento = new Vector3(horizontal, 0, vertical);
-
-        movimento  = Mycamera.TransformDirection(movimento);
-        movimento.y = 0;
-
-        controller.Move(movimento * Time.deltaTime * 10  );
-
-        if(movimento != Vector3.zero)
+        Move();
+        // ----------- PULO ---------------------
+        if (controller.isGrounded && verticalVelocity < 0)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movimento), Time.deltaTime * 10);
+            verticalVelocity = -2f; // "cola" no chão
         }
 
-        animator.SetBool("Mover", movimento != Vector3.zero);
-
-        caindodopulo = Physics.CheckSphere(pedopersonagem.position, 0.50f, colisaoLayer);
-        animator.SetBool("Está no chão", caindodopulo);
-
-        if (Input.GetKeyDown(KeyCode.Space) && caindodopulo)
-
+        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
         {
-            forcaY = 5f;
-            animator.SetTrigger("Saltar");
+            verticalVelocity = jumpForce;
+
+            // Ativa animação de pulo (trigger)
+            anim.SetTrigger("jump");
         }
 
-        if(forcaY > -9.81f)
+        // Aplica gravidade
+        verticalVelocity += gravity * Time.deltaTime;
+        Vector3 verticalMove = Vector3.up * verticalVelocity;
+        controller.Move(verticalMove * Time.deltaTime);
+
+        // ----------- ATAQUE ----------------------
+        if (Input.GetButtonDown("Fire1") && !isAttacking)
         {
-            forcaY += -9.81f * Time.deltaTime;
+            isAttacking = true;
+            anim.SetTrigger("attack"); // Ativa animação de ataque (trigger)
         }
 
-        controller.Move(new Vector3(0, forcaY, 0) * Time.deltaTime);
+        // ----------- ROTACIONA O PLAYER COM O MOUSE (CÂMERA) ----------------
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        // Roda o player horizontalmente
+        transform.Rotate(Vector3.up * mouseX);
+
+        // Roda a câmera verticalmente (limitada para não girar demais)
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
+
+    public void Move()
+    {
+        // ----------- MOVIMENTAÇÃO ----------------
+        float moveX = Input.GetAxis("Horizontal"); // A/D
+        float moveZ = Input.GetAxis("Vertical");   // W/S
+
+        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+
+        // ----------- ANIMAÇÃO DE WALK/IDLE -------------
+        // Se estiver se movendo, ativa a animação de corrida (trigger bool)
+        if (move != Vector3.zero && controller.isGrounded)
+        {
+            controller.Move(speed * Time.deltaTime * move); // Aplica movimentação
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
+
+    }
+
+
+    // Chamado pela animação no fim do ataque para desbloquear
+    public void EndAttack()
+    {
+        isAttacking = false;
     }
 }
