@@ -6438,9 +6438,10 @@ GameObject:
   - component: {fileID: 1946045488}
   - component: {fileID: 1946045490}
   - component: {fileID: 1946045489}
+  - component: {fileID: 1946045491}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (5)
-  m_TagString: Untagged
+  m_TagString: Coletavel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6513,6 +6514,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946045487}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1946045491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946045487}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000014901161}
 --- !u!1001 &1962629313
 PrefabInstance:
   m_ObjectHideFlags: 0
