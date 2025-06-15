@@ -16,6 +16,10 @@ public class PlayerNovo : MonoBehaviour
     private bool isJumping = false;
     private bool coroutineRunning = false;
 
+    [Header("Configuração de Ataque")]
+    public float attackRange = 2f; // Alcance do ataque
+    public int attackDamage = 20; // Dano causado
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -27,7 +31,6 @@ public class PlayerNovo : MonoBehaviour
     {
         Move();
 
-        // Pulo
         if (controller.isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
@@ -37,26 +40,42 @@ public class PlayerNovo : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
         {
             verticalVelocity = jumpForce;
-            anim.SetTrigger("Jump");  // Trigger com J maiúsculo
+            anim.SetTrigger("Jump");
             isJumping = true;
-            Debug.Log("Pulou! Trigger Jump acionado!");
+            Debug.Log("Pulou!");
         }
 
-        // Aplica gravidade
         verticalVelocity += gravity * Time.deltaTime;
         Vector3 verticalMove = Vector3.up * verticalVelocity;
         controller.Move(verticalMove * Time.deltaTime);
 
-        // Ataque
+        // ATAQUE COM RAYCAST
         if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
         {
             isAttacking = true;
-            anim.SetTrigger("Attack");  // Trigger com A maiúsculo
+            anim.SetTrigger("Attack");
             Debug.Log("Ataque iniciado!");
+
+            // Faz o Raycast pra frente a partir da altura do player
+            RaycastHit hit;
+            Vector3 origin = transform.position + Vector3.up; // altura do peito
+            if (Physics.Raycast(origin, transform.forward, out hit, attackRange))
+            {
+                Skeleton enemy = hit.collider.GetComponent<Skeleton>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(attackDamage);
+                    Debug.Log("Acertou inimigo!");
+                }
+                else
+                {
+                    Debug.Log("Não acertou inimigo.");
+                }
+            }
+
             StartCoroutine(ResetAttackCooldown());
         }
 
-        // Rotaciona o player com o mouse (câmera)
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
@@ -94,16 +113,13 @@ public class PlayerNovo : MonoBehaviour
             yield break;
 
         coroutineRunning = true;
-        // Ajuste o tempo para a duração da animação de ataque
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
         coroutineRunning = false;
-        Debug.Log("Ataque liberado para novo ataque.");
     }
 
     public void EndAttack()
     {
         isAttacking = false;
-        Debug.Log("EndAttack chamado");
     }
 }
