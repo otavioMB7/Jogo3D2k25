@@ -29,6 +29,7 @@ public class Skeleton : MonoBehaviour
 
     void Update()
     {
+        anim.SetBool("isWalking", true);
         if (player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
