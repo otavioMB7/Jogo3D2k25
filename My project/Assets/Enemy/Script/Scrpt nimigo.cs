@@ -6,9 +6,12 @@ public class Skeleton : MonoBehaviour
     [Header("Referências")]
     public Transform player;
 
-    [Header("Configurações de Ataque")]
-    public float attackDistance = 2.5f;
-    public float tempoDano = 1.5f;
+    [Header("Configuração de Ataque")]
+    public float attackRange = 3.0f;  // distância para parar e atacar
+    public float hitRange = 1.5f;     // alcance real para dar dano
+    public float tempoDano = 1.5f;    // intervalo entre ataques
+
+    private bool alreadyDealtDamage = false; // evitar dano duplo
 
     [Header("Vida")]
     public int maxHealth = 50;
@@ -22,60 +25,61 @@ public class Skeleton : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        agent.stoppingDistance = attackDistance;
 
         currentHealth = maxHealth;
+
+        // MUITO IMPORTANTE: define a distância de parada do agente de navegação
+        agent.stoppingDistance = attackRange * 0.9f; // um pouco menor para suavizar
     }
 
     void Update()
     {
-        anim.SetBool("isWalking", true);
         if (player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
-        agent.SetDestination(player.position);
 
-        if (distance > agent.stoppingDistance)
+        if (distance > attackRange)
         {
-            // Está longe: anda até o player
+            // Perseguir player
+            agent.SetDestination(player.position);
+
             anim.SetBool("isWalking", true);
+            alreadyDealtDamage = false;
         }
         else
         {
-            // Está perto: para e ataca
+            // Dentro da área de ataque: parar de andar
             anim.SetBool("isWalking", false);
 
-            // Olha para o player
-            Vector3 direction = (player.position - transform.position).normalized;
-            direction.y = 0;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-
-            // Ataca se passou o tempo do cooldown
             if (Time.time > lastAttackTime + tempoDano)
             {
-                anim.SetTrigger("attack");   // Dispara a animação de ataque
+                anim.SetTrigger("attack"); // Dispara animação de ataque
                 lastAttackTime = Time.time;
 
-                DealDamage();
+                if (!alreadyDealtDamage)
+                {
+                    DealDamage();
+                    alreadyDealtDamage = true;
+                }
             }
         }
     }
 
+    // Aplica dano apenas se dentro do alcance real de acerto
     void DealDamage()
     {
         float distance = Vector3.Distance(transform.position, player.position);
-        if (distance <= attackDistance)
+        if (distance <= hitRange)
         {
             PlayerDano health = player.GetComponent<PlayerDano>();
             if (health != null)
             {
                 health.TakeDamage(10);
-                Debug.Log("Skeleton causou dano ao Player!");
             }
         }
     }
 
+    // Recebe dano de fora (ex: ataque do player)
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
@@ -92,4 +96,16 @@ public class Skeleton : MonoBehaviour
         Debug.Log("Skeleton morreu!");
         Destroy(gameObject);
     }
+
+    // (Opcional) Visualizar o alcance no editor
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, hitRange);
+    }
 }
+
+
