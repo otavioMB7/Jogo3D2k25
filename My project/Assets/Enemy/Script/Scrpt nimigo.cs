@@ -7,11 +7,10 @@ public class Skeleton : MonoBehaviour
     public Transform player;
 
     [Header("Configuração de Ataque")]
-    public float attackRange = 3.0f;  // distância para parar e atacar
-    public float hitRange = 1.5f;     // alcance real para dar dano
-    public float tempoDano = 1.5f;    // intervalo entre ataques
-
-    private bool alreadyDealtDamage = false; // evitar dano duplo
+    public float attackRange = 3.0f;   // Distância para parar
+    public float hitRange = 1.5f;      // Alcance real de dano
+    public float attackCooldown = 1.5f;
+    public int attackDamage = 10;
 
     [Header("Vida")]
     public int maxHealth = 50;
@@ -25,11 +24,11 @@ public class Skeleton : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-
         currentHealth = maxHealth;
 
-        // MUITO IMPORTANTE: define a distância de parada do agente de navegação
-        agent.stoppingDistance = attackRange * 0.9f; // um pouco menor para suavizar
+        // CORRETO: parar antes de encostar!
+        agent.stoppingDistance = attackRange;
+        agent.autoBraking = false;
     }
 
     void Update()
@@ -40,46 +39,59 @@ public class Skeleton : MonoBehaviour
 
         if (distance > attackRange)
         {
-            // Perseguir player
-            agent.SetDestination(player.position);
+            // Perseguir
+            if (agent.isStopped)
+                agent.isStopped = false;
 
+            agent.SetDestination(player.position);
             anim.SetBool("isWalking", true);
-            alreadyDealtDamage = false;
         }
         else
         {
-            // Dentro da área de ataque: parar de andar
+            // Parar de perseguir completamente
+            if (!agent.isStopped)
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+            }
+
             anim.SetBool("isWalking", false);
 
-            if (Time.time > lastAttackTime + tempoDano)
+            // Girar para olhar para o player
+            Vector3 direction = (player.position - transform.position).normalized;
+            direction.y = 0;
+            if (direction != Vector3.zero)
             {
-                anim.SetTrigger("attack"); // Dispara animação de ataque
-                lastAttackTime = Time.time;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            }
 
-                if (!alreadyDealtDamage)
-                {
-                    DealDamage();
-                    alreadyDealtDamage = true;
-                }
+            // Atacar se cooldown permitir
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
+                anim.SetTrigger("attack");
+                lastAttackTime = Time.time;
             }
         }
     }
 
-    // Aplica dano apenas se dentro do alcance real de acerto
-    void DealDamage()
+    // Evento na animação de ataque
+    public void ApplyDamageToPlayer()
     {
+        if (player == null) return;
+
         float distance = Vector3.Distance(transform.position, player.position);
         if (distance <= hitRange)
         {
             PlayerDano health = player.GetComponent<PlayerDano>();
             if (health != null)
             {
-                health.TakeDamage(10);
+                health.TakeDamage(attackDamage);
+                Debug.Log("Player tomou dano do Skeleton!");
             }
         }
     }
 
-    // Recebe dano de fora (ex: ataque do player)
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
@@ -97,7 +109,6 @@ public class Skeleton : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // (Opcional) Visualizar o alcance no editor
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -107,5 +118,3 @@ public class Skeleton : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, hitRange);
     }
 }
-
-
