@@ -15,6 +15,9 @@ public class PlayerNovo : MonoBehaviour
 
     [Header("Configuração de Ataque")]
     public GameObject attackHitbox; // Objeto filho que é a hitbox
+    public float attackHitboxDelay = 0.2f; // tempo até ligar a hitbox
+    public float attackHitboxDuration = 0.3f; // tempo ativa
+    private bool isAttacking = false;
 
     void Start()
     {
@@ -43,14 +46,7 @@ public class PlayerNovo : MonoBehaviour
 
         if (controller.isGrounded && !isJumping)
         {
-            if (move != Vector3.zero)
-            {
-                anim.SetBool("isWalking", true);
-            }
-            else
-            {
-                anim.SetBool("isWalking", false);
-            }
+            anim.SetBool("isWalking", move != Vector3.zero);
         }
 
         controller.Move(speed * Time.deltaTime * move);
@@ -79,11 +75,32 @@ public class PlayerNovo : MonoBehaviour
 
     void HandleAttack()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
         {
             anim.SetTrigger("Attack");
+            StartCoroutine(AttackRoutine());
             Debug.Log("Ataque animado iniciado!");
         }
+    }
+
+    private System.Collections.IEnumerator AttackRoutine()
+    {
+        isAttacking = true;
+
+        // Espera o tempo para bater com o momento do golpe na animação
+        yield return new WaitForSeconds(attackHitboxDelay);
+
+        EnableHitbox();
+        Debug.Log("Hitbox ativada!");
+
+        // Mantém a hitbox ativa pelo tempo necessário
+        yield return new WaitForSeconds(attackHitboxDuration);
+
+        DisableHitbox();
+        Debug.Log("Hitbox desativada!");
+
+        // Pode colocar um cooldown aqui se quiser
+        isAttacking = false;
     }
 
     void HandleMouseLook()
@@ -98,14 +115,15 @@ public class PlayerNovo : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 
-    // Chamado por eventos de animação
     public void EnableHitbox()
     {
-        attackHitbox.SetActive(true);
+        if (attackHitbox != null)
+            attackHitbox.SetActive(true);
     }
 
     public void DisableHitbox()
     {
-        attackHitbox.SetActive(false);
+        if (attackHitbox != null)
+            attackHitbox.SetActive(false);
     }
 }
