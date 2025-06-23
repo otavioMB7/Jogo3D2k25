@@ -3,15 +3,15 @@ using UnityEngine.AI;
 
 public class Skeleton: MonoBehaviour
 {
-    [Header("Referências")]
+    
     public Transform player;
     public Collider attackHitbox; // Arraste o Collider aqui no Inspector
 
-    [Header("Configuração de Ataque")]
+    
     public float attackRange = 3.0f;
     public float attackCooldown = 1.5f;
 
-    [Header("Vida")]
+    
     public int maxHealth = 50;
     private int currentHealth;
 

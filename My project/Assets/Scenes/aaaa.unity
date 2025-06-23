@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -669,6 +669,7 @@ GameObject:
   - component: {fileID: 80973977}
   - component: {fileID: 80973979}
   - component: {fileID: 80973978}
+  - component: {fileID: 80973980}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (11)
   m_TagString: Untagged
@@ -744,6 +745,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80973976}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &80973980
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80973976}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000044703484}
 --- !u!1001 &90818842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1350,6 +1372,7 @@ GameObject:
   - component: {fileID: 210716781}
   - component: {fileID: 210716783}
   - component: {fileID: 210716782}
+  - component: {fileID: 210716784}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (15)
   m_TagString: Untagged
@@ -1425,6 +1448,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210716780}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &210716784
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210716780}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: -0.00000011920929, y: -0.000000011175871, z: 0.000000026077032}
+--- !u!1 &225935066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8921132878387904209, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+  m_PrefabInstance: {fileID: 1908917363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &225935070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225935066}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06291695, y: 0.08120583, z: 0.13872959}
+  m_Center: {x: -0.000000014901161, y: -0.0000000037252903, z: -0.000000059604645}
 --- !u!1001 &261807023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1538,6 +1608,7 @@ GameObject:
   - component: {fileID: 282968318}
   - component: {fileID: 282968320}
   - component: {fileID: 282968319}
+  - component: {fileID: 282968321}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (17)
   m_TagString: Untagged
@@ -1613,6 +1684,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282968317}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &282968321
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282968317}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000063329935}
 --- !u!1001 &290707869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4200,6 +4292,7 @@ GameObject:
   - component: {fileID: 1023417204}
   - component: {fileID: 1023417206}
   - component: {fileID: 1023417205}
+  - component: {fileID: 1023417207}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (13)
   m_TagString: Untagged
@@ -4275,6 +4368,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023417203}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1023417207
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023417203}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: -0.00000011920929, y: -0.000000011175871, z: 0.000000014901161}
 --- !u!1001 &1057039884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4516,6 +4630,7 @@ GameObject:
   - component: {fileID: 1134883283}
   - component: {fileID: 1134883285}
   - component: {fileID: 1134883284}
+  - component: {fileID: 1134883286}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (14)
   m_TagString: Untagged
@@ -4591,6 +4706,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134883282}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1134883286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134883282}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0.00000011920929, y: -0.000000011175871, z: 0.000000074505806}
 --- !u!1001 &1159950099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6510,6 +6646,7 @@ GameObject:
   - component: {fileID: 1568382787}
   - component: {fileID: 1568382789}
   - component: {fileID: 1568382788}
+  - component: {fileID: 1568382790}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (9)
   m_TagString: Untagged
@@ -6585,6 +6722,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568382786}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1568382790
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568382786}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000011175871}
 --- !u!1 &1570914450
 GameObject:
   m_ObjectHideFlags: 0
@@ -6596,6 +6754,7 @@ GameObject:
   - component: {fileID: 1570914451}
   - component: {fileID: 1570914453}
   - component: {fileID: 1570914452}
+  - component: {fileID: 1570914454}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (16)
   m_TagString: Untagged
@@ -6671,6 +6830,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570914450}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1570914454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570914450}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000074505806}
 --- !u!1 &1581574923
 GameObject:
   m_ObjectHideFlags: 0
@@ -6998,6 +7178,7 @@ GameObject:
   - component: {fileID: 1612569522}
   - component: {fileID: 1612569524}
   - component: {fileID: 1612569523}
+  - component: {fileID: 1612569525}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (10)
   m_TagString: Untagged
@@ -7073,6 +7254,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612569521}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1612569525
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612569521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0.00000011920929, y: -0.000000011175871, z: 0}
 --- !u!1 &1617432597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2045257923548263128, guid: 75ce6438b1266f34c85b04d670bffbc9, type: 3}
@@ -7338,6 +7540,7 @@ GameObject:
   - component: {fileID: 1694489487}
   - component: {fileID: 1694489489}
   - component: {fileID: 1694489488}
+  - component: {fileID: 1694489490}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (8)
   m_TagString: Untagged
@@ -7413,6 +7616,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694489486}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1694489490
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694489486}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000040978193}
 --- !u!1 &1699080418 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5816923370386436106, guid: acab743723ed9fb499a7d4ec7c4578bd, type: 3}
@@ -8771,6 +8995,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1908917365}
+    - targetCorrespondingSourceObject: {fileID: 8921132878387904209, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 225935070}
   m_SourcePrefab: {fileID: 100100000, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
 --- !u!4 &1908917364 stripped
 Transform:
@@ -8907,6 +9134,7 @@ GameObject:
   - component: {fileID: 1919515282}
   - component: {fileID: 1919515284}
   - component: {fileID: 1919515283}
+  - component: {fileID: 1919515285}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (12)
   m_TagString: Untagged
@@ -8982,6 +9210,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919515281}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1919515285
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919515281}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000029802322}
 --- !u!1 &1929272509
 GameObject:
   m_ObjectHideFlags: 0
@@ -8993,6 +9242,7 @@ GameObject:
   - component: {fileID: 1929272510}
   - component: {fileID: 1929272512}
   - component: {fileID: 1929272511}
+  - component: {fileID: 1929272513}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (6)
   m_TagString: Untagged
@@ -9068,6 +9318,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929272509}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &1929272513
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929272509}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: -0.000000008381903}
 --- !u!1 &1930874395 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5816923370386436106, guid: acab743723ed9fb499a7d4ec7c4578bd, type: 3}
@@ -9106,6 +9377,7 @@ GameObject:
   - component: {fileID: 1946045490}
   - component: {fileID: 1946045489}
   - component: {fileID: 1946045491}
+  - component: {fileID: 1946045492}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (5)
   m_TagString: Coletavel
@@ -9197,6 +9469,27 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: 0, y: -0.000000011175871, z: 0.000000014901161}
+--- !u!65 &1946045492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946045487}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -9838,7 +10131,7 @@ Transform:
   m_GameObject: {fileID: 2061255083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 435.44284, y: 18.2, z: 463.38754}
+  m_LocalPosition: {x: 435.44284, y: 18.1, z: 463.38754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9931,6 +10224,7 @@ GameObject:
   - component: {fileID: 2083573978}
   - component: {fileID: 2083573980}
   - component: {fileID: 2083573979}
+  - component: {fileID: 2083573981}
   m_Layer: 0
   m_Name: Depleted_Uranium_Barrel (7)
   m_TagString: Untagged
@@ -10006,6 +10300,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083573977}
   m_Mesh: {fileID: 557089264858795188, guid: 64b8b2f84826b084daa2323e86b8907b, type: 3}
+--- !u!65 &2083573981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083573977}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020528754, y: 0.026067823, z: 0.020528756}
+  m_Center: {x: -0.00000011920929, y: -0.000000011175871, z: 0.000000044703484}
 --- !u!1001 &2100023591
 PrefabInstance:
   m_ObjectHideFlags: 0

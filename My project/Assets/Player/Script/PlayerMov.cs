@@ -13,7 +13,6 @@ public class PlayerNovo : MonoBehaviour
     private float xRotation = 0f;
     private bool isJumping = false;
 
-    [Header("Configuração de Ataque")]
     public GameObject attackHitbox; // Objeto filho que é a hitbox
     public float attackHitboxDelay = 0.2f; // tempo até ligar a hitbox
     public float attackHitboxDuration = 0.3f; // tempo ativa
